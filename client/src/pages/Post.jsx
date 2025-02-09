@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 const Post = ({ posts, fetchPosts }) => {
   const [text, setText] = useState("");
   const [error, setError] = useState("");
-  const [removeCookie] = useCookies(["token"])
+  const [cookies, setCookie, removeCookie] = useCookies(["token"]);
   const navigate = useNavigate()
 
   const handlePostText = async (e) => {
@@ -17,16 +17,15 @@ const Post = ({ posts, fetchPosts }) => {
       fetchPosts();
     } catch (err) {
       console.log(err);
-      setError("Something went wrong, please try again!");
+      setError("Access denied, you are not logged in...");
     }
   };
 
   const handleLogout = async () => {
     try {
       await logout();
-      removeCookie("token"); // Remove token from cookies
-      window.location.reload(); // Reload page to reset state
-      navigate('/')
+      removeCookie("token", { path: "/" }); // Remove token from cookies
+      navigate("/")
     } catch (err) {
       console.log("Logout failed", err);
     }

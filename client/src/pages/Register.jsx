@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { register } from "../Api";
+import { register, login } from "../Api";
 import { Link, useNavigate } from "react-router-dom";
 
 const Register = ({ fetchPosts }) => {
@@ -14,8 +14,12 @@ const Register = ({ fetchPosts }) => {
     try {
       await register(username, gmail, password);
       alert("User registered");
-      fetchPosts();
-      navigate("/post");
+      const response = await login(gmail, password)
+
+      if(response.status === 200) {
+        fetchPosts();
+      navigate("/post");  
+      }
     } catch (err) {
       console.log(err);
       setError("Registration failed");

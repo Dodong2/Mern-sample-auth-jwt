@@ -37,7 +37,7 @@ function App() {
     <Router>
         <Suspense fallback={<div>Loading...</div>}>
       <Routes>
-      <Route path="/" element={<Introduction/>}/>
+        <Route path="/" element={<Introduction/>}/>
         <Route path="/login" element={<Login fetchPosts={fetchPosts} />} />
         <Route path="/register" element={<Register fetchPosts={fetchPosts} />} />
         <Route path="/post" element={<Post posts={posts} fetchPosts={fetchPosts} />} />
