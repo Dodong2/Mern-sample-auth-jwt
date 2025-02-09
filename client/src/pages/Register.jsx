@@ -34,7 +34,7 @@ const Register = ({ fetchPosts }) => {
       </form>
       <br />
       <div>
-        <span>Already have an account? <Link to="/">Sign in</Link></span>
+        <span>Already have an account? <Link to="/login">Sign in</Link></span>
       </div>
     </div>
   );

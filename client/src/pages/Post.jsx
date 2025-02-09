@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { useCookies } from "react-cookie";
 import { postText, logout } from "../Api";
+import { useNavigate } from "react-router-dom";
 
 const Post = ({ posts, fetchPosts }) => {
   const [text, setText] = useState("");
   const [error, setError] = useState("");
   const [removeCookie] = useCookies(["token"])
+  const navigate = useNavigate()
 
   const handlePostText = async (e) => {
     e.preventDefault();
@@ -24,6 +26,7 @@ const Post = ({ posts, fetchPosts }) => {
       await logout();
       removeCookie("token"); // Remove token from cookies
       window.location.reload(); // Reload page to reset state
+      navigate('/')
     } catch (err) {
       console.log("Logout failed", err);
     }

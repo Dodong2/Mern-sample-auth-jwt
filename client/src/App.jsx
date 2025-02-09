@@ -10,6 +10,7 @@ import { getPosts } from "./Api";
     
 
 function App() {
+    const Introduction = lazy(() => import('./pages/Introduction'))
     const Login = lazy(() => import('./pages/Login'))
     const Register = lazy(() => import('./pages/Register'))
     const Post = lazy(() => import('./pages/Post'))
@@ -36,7 +37,8 @@ function App() {
     <Router>
         <Suspense fallback={<div>Loading...</div>}>
       <Routes>
-        <Route path="/" element={<Login fetchPosts={fetchPosts} />} />
+      <Route path="/" element={<Introduction/>}/>
+        <Route path="/login" element={<Login fetchPosts={fetchPosts} />} />
         <Route path="/register" element={<Register fetchPosts={fetchPosts} />} />
         <Route path="/post" element={<Post posts={posts} fetchPosts={fetchPosts} />} />
       </Routes>
