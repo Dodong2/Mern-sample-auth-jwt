@@ -6,5 +6,5 @@ const api = axios.create({
 })
 export const register = (username, gmail, password) => api.post('/register', {username, gmail, password})
 export const login = (gmail, password) => api.post('/login', {gmail, password})
-export const postText = (text) => api.post('/post', { text })
+export const postText = (text) => api.post('/post', { text }, { withCredentials: true })
 export const getPosts = () => api.get('/posts');
