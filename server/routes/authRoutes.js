@@ -28,6 +28,7 @@ router.post('/register', async(req, res) => {
     }
 })
 
+//login
 router.post('/login', async (req, res) => {
     const { gmail, password } = req.body;
     try {
@@ -71,6 +72,12 @@ router.post('/login', async (req, res) => {
         console.log(err)
         res.status(500).send('Post error')
     }
+  })
+
+//logout
+  router.post('/logout', (req, res) => {
+    res.clearCookie('token', { httpOnly: true, secure: true, sameSite: 'None' })
+    res.status(200).send('Logged out')
   })
 
 

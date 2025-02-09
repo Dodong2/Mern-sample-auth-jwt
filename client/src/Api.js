@@ -8,3 +8,4 @@ export const register = (username, gmail, password) => api.post('/register', {us
 export const login = (gmail, password) => api.post('/login', {gmail, password})
 export const postText = (text) => api.post('/post', { text }, { withCredentials: true })
 export const getPosts = () => api.get('/posts');
+export const logout = () => api.post('/logout')
